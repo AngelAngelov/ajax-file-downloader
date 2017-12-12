@@ -26,8 +26,8 @@
     var obj = typeof exports !== 'undefined' ? exports : {};
 
     //Download file via AJAX POST method
-    obj.post = (url, data, doneFunc) => {
-        sendRequest('POST', url, data, (err, data) => {
+    obj.post = function (url, data, doneFunc) {
+        sendRequest('POST', url, data, function (err, data) {
             if (err) {
                 //process error
                 if (doneFunc && typeof doneFunc == 'function') {
@@ -45,8 +45,8 @@
     }
 
     //Download file via AJAX GET method
-    obj.get = (url, doneFunc) => {
-        sendRequest('GET', url, null, (err, data) => {
+    obj.get = function (url, doneFunc) {
+        sendRequest('GET', url, null, function(err, data) {
             if (err) {
                 //process error
                 if (doneFunc && typeof doneFunc == 'function') {
@@ -89,8 +89,9 @@
 
     //Create an <a> element wich will be used for downloading the content from the Blob
     function parseSuccessRequest(result) {
-        // we create an <a> element but it never gets into the DOM
+        // we create an <a> element with a link to the blob
         var a = document.createElement('a');
+        document.body.appendChild(a);
         if (window.URL && window.Blob && ('download' in a) && window.atob) {
             // Do it the HTML5 compliant way
             var blob = base64ToBlob(result.data, result.mimetype);
@@ -98,7 +99,9 @@
             a.href = url;
             a.download = result.filename;
             a.click();
-            window.URL.revokeObjectURL(url);
+            //remove the <a> element from the DOM
+            document.body.removeChild(a);
+            //window.URL.revokeObjectURL(url);
         }
     }
 
@@ -132,4 +135,3 @@
 
     return obj;
 }));
-

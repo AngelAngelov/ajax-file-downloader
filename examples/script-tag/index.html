@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-</head>
-<body>
-    <button onclick="download()">Download</button>
-    <script src="../../lib/ajax-file-downloader.min.js"> </script>
+    </script>
     <script>
-        function download(){
+        function download() {
             window.ajaxFileDownloader.get("https://my-json-server.typicode.com/angelangelov/file/xml", (err) => {
                 if (err) {
                     console.log('ERROR: ', err);
@@ -20,5 +18,11 @@
             });
         }
     </script>
+</head>
+
+<body>
+    <button onclick="download()">Download</button>
+
 </body>
+
 </html>
