@@ -1,6 +1,7 @@
 # ajax-file-downloader
 
-small js function to download file from server via AJAX request in pure JavaScript
+small js function to download file from server via AJAX request in pure JavaScript.
+
 
 ### Basic usage
 #### get(url, callback)
@@ -12,6 +13,17 @@ url - server url
 data - JSON data if we are using POST request
 
 callback - function that is called when the download is done. It takes one parameter (err) which value is filler when error occurs during the http request
+
+Response object must be as follows:
+
+```javascript
+{
+    mimetype: string(mimetype in the form 'major/minor'),
+    filename: string(the name of the file to download),
+    data: base64(the binary data as base64 to download)
+}
+```
+### The file data returned MUST be base64 encoded because you cannot JSON encode binary data
 
 ## Sample
 # Using <script> tag 
