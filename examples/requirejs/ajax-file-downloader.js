@@ -46,7 +46,7 @@
 
     //Download file via AJAX GET method
     obj.get = function (url, doneFunc) {
-        sendRequest('GET', url, null, function(err, data) {
+        sendRequest('GET', url, null, function (err, data) {
             if (err) {
                 //process error
                 if (doneFunc && typeof doneFunc == 'function') {
@@ -89,19 +89,27 @@
 
     //Create an <a> element wich will be used for downloading the content from the Blob
     function parseSuccessRequest(result) {
-        // we create an <a> element with a link to the blob
-        var a = document.createElement('a');
-        document.body.appendChild(a);
-        if (window.URL && window.Blob && ('download' in a) && window.atob) {
+        if (window.URL && window.Blob && window.atob) {
             // Do it the HTML5 compliant way
             var blob = base64ToBlob(result.data, result.mimetype);
-            var url = window.URL.createObjectURL(blob);
-            a.href = url;
-            a.download = result.filename;
-            a.click();
-            //remove the <a> element from the DOM
-            document.body.removeChild(a);
-            //window.URL.revokeObjectURL(url);
+
+            // we create an <a> element with a link to the blob
+            var a = document.createElement('a');
+
+            // in IE 11 dows not have 'download' attr in a tag
+            if ('download' in a) {
+                var url = window.URL.createObjectURL(blob);
+
+                document.body.appendChild(a);
+                a.href = url;
+                a.download = result.filename;
+                a.click();
+                
+                //remove the <a> element from the DOM
+                document.body.removeChild(a);
+            } else {
+                navigator.msSaveBlob(blob, result.filename);
+            }
         }
     }
 

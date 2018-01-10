@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    </script>
+    <script src="/ajax-file-downloader.js"></script>
+</head>
+<body>
+    <button id="download">Download</button>
+
     <script>
         function download() {
-            window.ajaxFileDownloader.get("https://my-json-server.typicode.com/angelangelov/file/xml", (err) => {
+            window.ajaxFileDownloader.get("https://my-json-server.typicode.com/angelangelov/file/xml", function (err) {
                 if (err) {
                     console.log('ERROR: ', err);
                 }
@@ -17,12 +21,10 @@
                 alert("done!")
             });
         }
+
+        var element = document.getElementById('download');
+        element.addEventListener('click', download);
     </script>
-</head>
-
-<body>
-    <button onclick="download()">Download</button>
-
 </body>
 
 </html>
