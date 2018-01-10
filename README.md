@@ -3,7 +3,7 @@
 Small js function to download file from server via AJAX request in pure JavaScript.
 
 ### Browser support 
-Chome (14+), Firefox (20+), Edge(13+)
+Chome (14+), Firefox (20+), Edge(13+), IE (11)
 
 ### Basic usage
 #### get(url, callback)
