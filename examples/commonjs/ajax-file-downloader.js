@@ -73,7 +73,7 @@
                 if (this.status >= 200 && this.status < 300) {
                     cb(null, JSON.parse(this.responseText));
                 } else {
-                    let error = {
+                    var error = {
                         statusCode: this.status,
                         text: this.responseText
                     };
