@@ -27,8 +27,8 @@ Response object must be as follows:
 ```
 ### The file data returned MUST be base64 encoded because you cannot JSON encode binary data
 
-## Sample
-# Using <script> tag 
+## Samples
+### Using <script> tag 
 
 ```javascript
 //GET
@@ -55,7 +55,7 @@ window.ajaxFileDownloader.post("https://server/path", additionalData, (err) => {
 });
 ```
 
-## RequireJs
+### RequireJs
 ```javascript
 define(['./ajax-file-downloader'], (downloader) => {
     const button = document.querySelector('#downloadBtn');
@@ -86,7 +86,7 @@ define(['./ajax-file-downloader'], (downloader) => {
 })
 ```
 
-## CommonJS
+### CommonJS
 ```javascript
 module.import('./ajax-file-downloader').then(function (downloader) {
     const button = document.querySelector('#downloadBtn');
